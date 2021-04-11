@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/audio"
+        android:icon="@drawable/xiaren"
+        android:title="icon_audio"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/camera"
+        android:icon="@drawable/ic_camera"
+        android:title="ic_camera"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/coffee"
+        android:title="添加好友"
+        app:showAsAction="never"
+        />
+</menu>

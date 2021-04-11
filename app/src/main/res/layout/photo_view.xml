@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---->
+<!--//若该文件的名字改了，适配器里也要改名字-->
+<!---->
+<!---->
+<!---->
+<!---->
+
+<!--这一块是竖直滑动效果布局-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp">-->
+    <!--&lt;!&ndash;这里是默认水平线性排版&ndash;&gt;-->
+    <!--<ImageView-->
+        <!--android:id="@+id/imagekkk"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+    <!--&lt;!&ndash;修改大小要记得把两个组件都改了，或者直接把全局的大小改了&ndash;&gt;-->
+    <!--<TextView-->
+        <!--android:id="@+id/photoname"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginLeft="10dp" />-->
+
+
+<!--</LinearLayout>-->
+
+
+
+<!--&lt;!&ndash;//这一块是横向滑动布局&ndash;&gt;-->
+<!--<LinearLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+    <!--&lt;!&ndash;这里是垂直排版&ndash;&gt;-->
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/imagekkk"-->
+        <!--/>-->
+    <!--&lt;!&ndash;修改大小要记得把两个组件都改了，或者直接把全局的大小改了&ndash;&gt;-->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:id="@+id/photoname"-->
+        <!--/>-->
+<!--</LinearLayout>-->
+
+
+<!--//这一块是瀑布滑动布局-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   android:layout_gravity="center"
+  android:gravity="center"
+    android:layout_margin="5dp">
+
+    <!--修改大小要记得把两个组件都改了，或者直接把全局的大小改了-->
+    <TextView
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:id="@+id/photoname"
+        />
+
+
+    <ImageView
+        android:layout_marginLeft="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagekkk"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>
+

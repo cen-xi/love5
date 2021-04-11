@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--ScrollView为滚动条面板，若不要，可以不写的，是父类标签-->
+<!--AbsoluteLayout是组件绝对定位，是父类标签-->
+<!--android:fadingEdge="vertical"
+    android:scrollbars="vertical"
+
+
+    android:focusable="true"
+        android:focusableInTouchMode="true"
+    这两句话是用来取消编辑框自动选定功能
+    -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="vertical"
+    android:scrollbars="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/timg_2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <!--多给页面叠加,导入页面-->
+        <include layout="@layout/daohanglan" />
+
+
+        <!--android:orientation="vertical"表示分布方式：垂直-->
+
+        <!--
+            wrap_content :包裹内容
+            match_parent :填充满父view（窗口）
+        android:layout_gravity="center"  :水平居中
+
+        -->
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="测试几个字！！"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="23sp"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="请输入一些文字或小表情："
+            android:textColor="#020202"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+        <!--android:singleLine="true"是禁止换行-->
+        <Button
+            android:id="@+id/button"
+            android:layout_width="141dp"
+            android:layout_height="141dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="我是按钮啊,写完点我"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="307dp" />
+
+
+        <ImageView
+            android:id="@+id/photo1"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:src="@drawable/img_1" />
+        <!--图片命名开头不能为数字，图片放到新建的文件夹drawable-xhdpi-->
+        <ImageView
+            android:id="@+id/photo2"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:src="@drawable/img_1" />
+        <!--<requestFocus />-->
+
+        <!--存储入口-->
+        <Button
+
+            android:id="@+id/but1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:text="我是文件存储"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/but2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:text="我是SharedPreferences存储"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/but3"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:text="我是SQLite数据库存储"
+            android:textSize="25sp" />
+
+
+    </LinearLayout>
+
+</ScrollView>

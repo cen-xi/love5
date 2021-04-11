@@ -1,0 +1,8 @@
+<litepal>
+    <dbname value="who"></dbname>
+    <version value="2"></version>
+    <list>
+        <mapping class="util.People"></mapping>
+    </list>
+</litepal>
+<!--如果要修改表结构，记得版本号要更改，一般是加1就好了-->
