@@ -50,50 +50,18 @@ public class Main4Activity extends AppCompatActivity {
         w.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
+                //禁用非http 和 https 的超链接
+                if (url.contains("://") && !url.contains("http://") && !url.contains("https://")) {
+                    //不存在时,禁用跳转操作
+                    return true;
+                }
+                w.loadUrl(url);
+                return true;
             }
 
         });
-        //绑定暴露与js的接口
+        //绑定暴露给js的接口
         w.addJavascriptInterface(new InterfaceForJS(), "InterfaceForJS");
-
-
-//        //webView必须要有下面4行才可以访问网页
-//        final WebView w = (WebView) findViewById(R.id.web);
-//        w.getSettings().setJavaScriptEnabled(true);
-//        w.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//
-//                try {
-//                    if (url.lastIndexOf("://") > -1) {
-//                        //存在
-//                        String[] strArr = url.split("://");
-//                        if (strArr[0].length() > 0 && !strArr[0].equalsIgnoreCase("http")
-//                                && !strArr[0].equalsIgnoreCase("https")) {
-//                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                            startActivity(intent);
-//                            return true;
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    return false;
-//                }
-//                w.loadUrl(url);
-//                return true;
-//            }
-//        });
-////        w.loadUrl("https://www.baidu.com");
-//        w.loadUrl("http://192.168.153.1:55/html/app/login.html");
-
-
-//        //webView必须要有下面4行才可以访问网页
-//        WebView w=(WebView) findViewById(R.id.web);
-//        w.getSettings().setJavaScriptEnabled(true);
-//
-//
-//        w.setWebViewClient(new WebViewClient());
-//        w.loadUrl("http://192.168.153.1:55/html/app/login.html");
 
 
     }
