@@ -4,7 +4,7 @@ package util.forJSInterface;
 import lombok.Data;
 
 @Data
-class JsData {
+public class JsData {
 
     //接口类型
     private String type;
