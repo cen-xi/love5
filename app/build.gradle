@@ -19,7 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    //百度sdk设置
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs/baiduSdk'
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
 }
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -57,6 +66,24 @@ dependencies {
     //lombok配置依赖
     implementation 'javax.annotation:javax.annotation-api:1.2'
     implementation "org.projectlombok:lombok:1.18.12"
+
+    //图片选择器
+    implementation 'com.lzy.widget:imagepicker:0.6.1'
+
+    //图片加载库
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    //noinspection GradleCompatible
+    //使用图片选择器需要加载这个
+    implementation 'com.android.support:support-v4:27.1.1'
+
+
+
+
+
+//    androidTestCompile ('com.android.support.test.espresso: espresso-core: 2.2.2', {
+//        exclude group: 'com.android.support',  module: 'support-annotations'
+//    })
 
 }
 //compile这个已经过时了，无语

@@ -583,7 +583,8 @@ public class MainCamera extends AppCompatActivity {
     //获取摄像头拍照后图片的存储路径，即获取缓存文件真实路径的方法
     private void getImageUri() {
         //创建file对象，用于存储拍照后的图片，getExternalCacheDir()可以获得应用关联缓存目录,在里面查找一个output_image.jpg的文件
-        File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
+//        File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
+        File outputImage = new File("Android/data/com.example.love5/2021-04-13/CameraFile/", "output_image.jpg");
 
         try {
             //判断这个文件是否存在，存在则删除然后新建一个空的，等待新的照片临时缓存
@@ -600,9 +601,11 @@ public class MainCamera extends AppCompatActivity {
         //都要提前在Androidmainfest.xml里注册权限<uses-permission android:name="android.permission.CAMERA"
         //获取文件的本地真实路径imageuri
         //判断手机Android版本是否大于23，即Android6.0,6.0版本后读取的真实路径方法不一样
+        Log.d("文件路径6666666666666",outputImage+"");
         if (Build.VERSION.SDK_INT >= 23) {
             //高于6.0，需要使用一个内容提供其获取本地真是路径，可以提高安全性
-            imageuri = FileProvider.getUriForFile(MainCamera.this, "com.example.cameraalbumtest.fileprovider", outputImage);
+//            imageuri = FileProvider.getUriForFile(MainCamera.this, "com.example.cameraalbumtest.fileprovider", outputImage);
+            imageuri = FileProvider.getUriForFile(MainCamera.this, "com.example.love5.fileprovider", outputImage);
         } else {
             //低于6.0，可以直接获取图片的本地真实路径
             imageuri = Uri.fromFile(outputImage);
@@ -620,8 +623,22 @@ public class MainCamera extends AppCompatActivity {
 
     //    //调用开启相册的方法,仅获取图片
     private void openAlbum() {
-        Intent intent = new Intent("android.intent.action.GET_CONTENT");
-        intent.setType("image/*");
+//        Intent intent = new Intent("android.intent.action.GET_CONTENT");
+        Intent intent;
+        if (Build.VERSION.SDK_INT < 19) {
+            //低于4.4
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+        } else {
+            intent = new Intent(Intent.ACTION_PICK,null);
+//            intent.setType("image/*");
+            intent.setType("video/*");
+//            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        }
+
+
+//        intent.setType("video/*");
+//        intent.setType("video/*");
         startActivityForResult(intent, CHOOSE_PHOTO);//开启相册
 
 //    intent.setType(“image/*”);//选择图片
@@ -722,7 +739,7 @@ public class MainCamera extends AppCompatActivity {
         String imagePath = null;
         Uri uri = data.getData();
         if (DocumentsContract.isDocumentUri(this, uri)) {
-            //如果是document类型的uri，则通过document id处理
+            //如果是document类型的uri，则通过document id处理,一般是4.4以上进行了封装
             String docId = DocumentsContract.getDocumentId(uri);
             if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
                 //解析出数字格式的id
@@ -742,9 +759,12 @@ public class MainCamera extends AppCompatActivity {
                 //如果是file类型的uri，直接获取图片路径即可
                 imagePath = uri.getPath();
             }
-            //根据图片路径显示图片
-            displayImage(imagePath);
+        }else if ("content".equalsIgnoreCase(uri.getScheme())){
+            imagePath = getImagePath(uri,null);
         }
+        //根据图片路径显示图片
+        displayImage(imagePath);
+
     }
 
     /**

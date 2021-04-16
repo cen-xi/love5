@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 手机震动权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问SD卡权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 访问手机内存储权限 -->
+    <!--弹出对话框权限-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!--文件系统权限-->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
@@ -20,24 +21,57 @@
     <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"-->
         <!--tools:ignore="ProtectedPermissions" />-->
 
-    <!--gps定位需要的权限-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.PERMISSION_REQUEST_COARSE_LOCATION" />
-    <!--模拟器定位权限-->
-    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"-->
-        <!--tools:ignore="MockLocation"/>-->
+    <!--&lt;!&ndash;gps定位需要的权限&ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.PERMISSION_REQUEST_COARSE_LOCATION" />-->
+    <!--&lt;!&ndash;模拟器定位权限&ndash;&gt;-->
+    <!--&lt;!&ndash;<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"&ndash;&gt;-->
+        <!--&lt;!&ndash;tools:ignore="MockLocation"/>&ndash;&gt;-->
 
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--&lt;!&ndash; 访问网络，网络定位需要上网&ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+
+    <!--android:debuggable="true"-->
     <application
+
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ViewPaper1Activity"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode">
+
+
+
+        <!--百度sdk配置-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="A5QrF2oVGqXFtCyYehNSZU9v0VpD9WxF" >
+        </meta-data>
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <!---->
+
+        <activity android:name=".ViewPaper1Activity" />
         <activity android:name=".MainFileUpload" />
         <activity
             android:name=".MainToolbar"
@@ -66,10 +100,27 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 开启摄像头需要的注册代码 -->
+        </activity>
+        <!--&lt;!&ndash; 声明临时文件存放位置，提供uri读取 &ndash;&gt;-->
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="com.example.cameraalbumtest.fileprovider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/file_paths" />-->
+        <!--</provider>-->
+        <!-- 声明临时文件存放位置，提供uri读取
+
+         authorities：app的包名.fileProvider
+grantUriPermissions：必须是true，表示授予 URI 临时访问权限
+exported：必须是false
+resource：中的@xml/file_paths是我们接下来要添加的文件
+         -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.cameraalbumtest.fileprovider"
+            android:authorities="com.example.love5.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
